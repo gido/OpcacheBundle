@@ -17,8 +17,8 @@
     },
     "autoload": {
         "psr-0": {
-            "Benr77\\OpcacheBundle": ""
+            "Sixdays\\OpcacheBundle": ""
         }
     },
-    "target-dir": "Benr77/OpcacheBundle"
+    "target-dir": "Sixdays/OpcacheBundle"
 }
