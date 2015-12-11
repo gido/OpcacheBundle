@@ -1,24 +1,24 @@
 <?php
-$message = 'Clear Opcache';
+$message = 'Clear Opcache: ';
 
 if (opcache_reset()) {
     $success = true;
-    $message .= ' Opcode Cache: success';
+    $message .= 'success! ';
 }
 else {
     $success = false;
-    $message .= ' Opcode Cache: failure';
+    $message .= 'failure! ';
 }
 
-$message = 'Clear APCu Cache';
+$message .= 'Clear APCu Cache: ';
 
 if (apc_clear_cache()) {
     $success = true;
-    $message .= ' APCu Cache: success';
+    $message .= 'success!';
 }
 else {
     $success = false;
-    $message .= ' APCu Cache: failure';
+    $message .= ' failure!';
 }
 
 die(json_encode(array('success' => $success, 'message' => $message)));
