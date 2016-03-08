@@ -44,6 +44,8 @@ class OpcacheClearCommand extends ContainerAwareCommand
 
         $url = sprintf('%s/%s', $baseUrl, $filename);
 
+        sleep(1);
+
         $result = file_get_contents($url);
 
         $result = json_decode($result, true);
