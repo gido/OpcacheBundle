@@ -44,26 +44,7 @@ class OpcacheClearCommand extends ContainerAwareCommand
 
         $url = sprintf('%s/%s', $baseUrl, $filename);
 
-        $ch = curl_init();
-        curl_setopt_array($ch, array(
-            CURLOPT_URL             => $url,
-            CURLOPT_RETURNTRANSFER  => true,
-            CURLOPT_FAILONERROR     => true,
-            CURLOPT_HEADER          => false,
-            CURLOPT_SSL_VERIFYPEER  => false,
-            CURLOPT_SSL_VERIFYHOST  => false
-        ));
-
-        $result = curl_exec($ch);
-
-        if (curl_errno($ch)) {
-            $error = curl_error($ch);
-            curl_close($ch);
-            unlink($file);
-            throw new \RuntimeException(sprintf('Curl error reading "%s": %s', $url, $error));
-        }
-
-        curl_close($ch);
+        $result = file_get_contents($url);
 
         $result = json_decode($result, true);
         unlink($file);
