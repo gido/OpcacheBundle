@@ -54,8 +54,15 @@ class OpcacheClearCommand extends ContainerAwareCommand
             CURLOPT_FAILONERROR     => true,
             CURLOPT_HEADER          => false,
             CURLOPT_SSL_VERIFYPEER  => false,
-            CURLOPT_SSL_VERIFYHOST  => false
+            CURLOPT_SSL_VERIFYHOST  => false,
         ));
+
+        if ($this->getContainer()->getParameter('sixdays_opcache.http_basic.user')) {
+            $user = $this->getContainer()->getParameter('sixdays_opcache.http_basic.user');
+            $password = $this->getContainer()->getParameter('sixdays_opcache.http_basic.password');
+            curl_setopt($ch, CURLOPT_USERPWD, $user.':'.$password);
+        }
+
         $result = curl_exec($ch);
         if (curl_errno($ch)) {
             $error = curl_error($ch);

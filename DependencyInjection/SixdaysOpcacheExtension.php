@@ -16,5 +16,13 @@ class SixdaysOpcacheExtension extends Extension
 
         $container->setParameter('sixdays_opcache.base_url', $config['base_url']);
         $container->setParameter('sixdays_opcache.web_dir', $config['web_dir']);
+
+        $container->setParameter('sixdays_opcache.http_basic.user', null);
+        $container->setParameter('sixdays_opcache.http_basic.password', null);
+
+        if (isset($config['http_basic']) && null !== $config['http_basic']['user']) {
+            $container->setParameter('sixdays_opcache.http_basic.user', $config['http_basic']['user']);
+            $container->setParameter('sixdays_opcache.http_basic.password', $config['http_basic']['password']);
+        }
     }
 }

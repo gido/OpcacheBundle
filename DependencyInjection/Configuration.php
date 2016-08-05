@@ -26,6 +26,14 @@ class Configuration
             ->children()
                 ->scalarNode('base_url')->isRequired()->end()
                 ->scalarNode('web_dir')->isRequired()->end()
+                ->arrayNode('http_basic')
+                    ->addDefaultsIfNotSet()
+                    ->canBeUnset()
+                    ->children()
+                        ->scalarNode('user')->defaultNull()->end()
+                        ->scalarNode('password')->defaultNull()->end()
+                    ->end()
+                ->end()
             ->end()
         ->end();
 
